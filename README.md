@@ -70,20 +70,8 @@ To get started, we will focus on these environments initially.
 Add the code snippet below to start building the Jenkinsfile gradually. This pipeline currently has just one stage called Build and the only thing we are doing is using the shell script module to echo Building Stage. Go ahe
 
                                                       
-  pipeline {
-    agent any
-
-  stages {
-    stage('Build') {
-      steps {
-        script {
-          sh 'echo "Building Stage"'
-         }
-       }
-      }
-     }
- }         
-          
+  ![Jenkinsfile-Build stage  new](https://user-images.githubusercontent.com/65022146/214299598-36be0b65-df7c-49c9-98b9-8238382c86cc.png)
+  
  
  - If this job is triggered in Jenkins(and in Blue Ocean) and the Build is successful, you will see an output thats looks like the screenshot below:
 
@@ -91,11 +79,36 @@ Add the code snippet below to start building the Jenkinsfile gradually. This pip
 ![branch echo-building stage](https://user-images.githubusercontent.com/65022146/214286301-38e8a344-bf82-4449-89fb-c35aa3b62787.png)
 
 
-
 - At this point, another branch called 'feature/jenkinspipeline-stages'. This is because when you are working on a project, you do not want to be commiting directly to the main branch. it is always good to work on branch and only merge with the main branch when the code is good enough and have passedm the necessary test.
 
-- Next, add another stage called 'Test', push the changes to github and try to trigger the build in Jenkins. If the build is successful, you will see a screenshot like this:
+- Next, add another stage called 'Test', push the changes to github and try to trigger the build in Jenkins. Here, we are also going to add a quick task which include: Packages, Deploy ad Clean-up Stages--both Initial clean up of Jenkins directory and the eventual deletion of workspace and folders after jobs must have been built.
+![Jenkinsfile-test-cleanup stage 1](https://user-images.githubusercontent.com/65022146/214308942-17771510-f5bc-4c56-bb50-e6a068084ec6.png)
+     ![Jenkinsfile-test-cleanup stage 2](https://user-images.githubusercontent.com/65022146/214308946-dbbfd5ed-68cc-4b37-8e7a-db0257824ea9.png)
+     
+-  If the build is successful, you will see a screenshot like this:
+![delete workspace successful](https://user-images.githubusercontent.com/65022146/214311188-d3be6a5c-0a27-4147-9873-8b4af62c7c04.png)
 
 
-        
+
+## RUNNING ANSIBLE PLAYBOOK FROM JENKINS
+Now that you have a broad overview of a typical Jenkins pipeline. Let us get the actual Ansible deployment to work by:
+
+- Installing Ansible on Jenkins
+- Installing Ansible plugin in Jenkins UI
+- Creating Jenkinsfile from scratch. (This time you have to delete all you currently have in Jenkinsfile and start all over to get Ansible to run successfully)
+
+
+- Note that for Ansible to install MYSQL, there are some dependecies that needs to be installed for ansible to run properly
+
+`
+python3 -m pip install --upgrade setuptools
+python3 -m pip install --upgrade pip
+python3 -m pip install PyMySQL
+python3 -m pip install mysql-connector-python
+`
+
+- For Postgresql Database, install
+
+  `ansible-galaxy collection install community.postgresql`
+ 
         
