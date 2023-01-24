@@ -151,12 +151,26 @@ python3 -m pip install mysql-connector-python
     
     
     
-    
-    
-    
     ## CI/CD PIPELINE FOR TODO APPLICATION
     
     - Here you have to add PHP-Todo folder to your workspace.
     
     - Phase 1 – Prepare Jenkins by:
-    1. Forking and cloning down the 
+    1. Forking and cloning down the PHP-Todo repository
+   
+   2. On you Jenkins server, install PHP, its dependencies and Composer tool as follows:
+     
+  
+        `yum module reset php -y`
+        
+        `yum module enable php:remi-7.4 -y`
+        
+        `yum install -y php php-common php-mbstring php-opcache php-intl php-xml php-gd php-curl php-mysqlnd php-fpm php-json`
+        
+        `systemctl start php-fpm`
+        
+        `systemctl enable php-fpm`
+        
+        
+        
+         
