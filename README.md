@@ -148,3 +148,15 @@ python3 -m pip install mysql-connector-python
 - Now let's run an ansible playbook with Dev parameter. This will look like the image below if successful:
 
     ![ansible wt dev parameter successful](https://user-images.githubusercontent.com/65022146/214344183-52b8a197-912f-48d1-905d-725235fbcc17.png)
+    
+    
+    
+    
+    
+    
+    ## CI/CD PIPELINE FOR TODO APPLICATION
+    
+    - Here you have to add PHP-Todo folder to your workspace.
+    
+    - Phase 1 – Prepare Jenkins by:
+    1. Forking and cloning down the 
