@@ -97,6 +97,12 @@ Now that you have a broad overview of a typical Jenkins pipeline. Let us get the
 - Installing Ansible plugin in Jenkins UI
 - Creating Jenkinsfile from scratch. (This time you have to delete all you currently have in Jenkinsfile and start all over to get Ansible to run successfully)
 
+- The new Jenkinsfile will look like the screenshot below:
+
+![Jenkinsfile for ansible plabk1](https://user-images.githubusercontent.com/65022146/214329229-fade2a13-0170-4c35-a110-b6986b95c0a8.png)
+![Jenkinsfile for ansible plabk2](https://user-images.githubusercontent.com/65022146/214329237-a820abb4-c65e-4b79-974c-fe0f7b20b06d.png)
+
+
 
 - Note that for Ansible to install MYSQL, there are some dependecies that needs to be installed for ansible to run properly
 
@@ -111,4 +117,19 @@ python3 -m pip install mysql-connector-python
 
   `ansible-galaxy collection install community.postgresql`
  
+ #### Here two more instances were added namely: Nginx(RHEL) and Database(Ubuntu)
+ 
+#### Befoe running the ansible playbook, do not forget that ansible need to ssh into the instances. And because, ansible is not directly running the playbook, the private key of the instances has to be passed over to Jenkins by going to:
+
+- Jenkins------>Manage Jenkins---->Manage Credentials
+
+#### Also add ansible to Jenkins by navigating to:
+
+ - Jenkins------>Manage Jenkins---->Global Tool Configuration
+
+#### Note also that you can generate the ansible-playbook string by navigating to:
+
+ - Jenkins--->Ansible-config-mgt(Repo name)---->Pipeline Syntax
+ 
+  Now let us run an ansible-playbook in the Jenkinsfile, Here you have to tweak the Playbook/site.yml by uncommenting the Nginx and Database roles and also in Mysql/defaults/main.yml, uncomment the Creating a database, tooling and the user, Webaccess
         
