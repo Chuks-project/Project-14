@@ -131,5 +131,20 @@ python3 -m pip install mysql-connector-python
 
  - Jenkins--->Ansible-config-mgt(Repo name)---->Pipeline Syntax
  
-  Now let us run an ansible-playbook in the Jenkinsfile, Here you have to tweak the Playbook/site.yml by uncommenting the Nginx and Database roles and also in Mysql/defaults/main.yml, uncomment the Creating a database, tooling and the user, Webaccess
+  Now let us run an ansible-playbook against ci environment in the Jenkinsfile, Here you have to tweak the Playbook/site.yml by uncommenting the Nginx and Database roles and also in Mysql/defaults/main.yml, uncomment the Creating a database, tooling and the user, Webaccess
+  
+   
+-  If the build is successful, you will see a screenshot like this:
         
+    ![ansi inv ci succesful](https://user-images.githubusercontent.com/65022146/214336530-56c0905e-ad4a-4c8e-bf48-a9255b23714f.png)
+    
+    
+    #### Parameterization
+- The ansible-playbook above was ran under the ci env. However, Ansible can run in a different environment such as in Dev by using build with parameter
+    
+       ![Build with parameter](https://user-images.githubusercontent.com/65022146/214342717-d944acef-28b8-4919-8ca2-7b47f0700cb4.png)
+
+
+- Now let's run an ansible playbook with Dev parameter. This will look like the image below if successful:
+
+    ![ansible wt dev parameter successful](https://user-images.githubusercontent.com/65022146/214344183-52b8a197-912f-48d1-905d-725235fbcc17.png)
