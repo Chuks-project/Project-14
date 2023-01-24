@@ -65,4 +65,37 @@ To get started, we will focus on these environments initially.
 
 - Jenkinsfile contains every step or jobs/actions that we want to execute. It is built in a code. 
 - Every job in Jenkinsfile starts with a Pipeline followed by Agent. In the cousre of this project, we use 'Any Agent', followed by the Stages ad steps.
-   
+
+## Example
+Add the code snippet below to start building the Jenkinsfile gradually. This pipeline currently has just one stage called Build and the only thing we are doing is using the shell script module to echo Building Stage. Go ahe
+
+                                                      
+  pipeline {
+    agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        script {
+          sh 'echo "Building Stage"'
+         }
+       }
+      }
+     }
+ }         
+          
+ 
+ - If this job is triggered in Jenkins(and in Blue Ocean) and the Build is successful, you will see an output thats looks like the screenshot below:
+
+
+![branch echo-building stage](https://user-images.githubusercontent.com/65022146/214286301-38e8a344-bf82-4449-89fb-c35aa3b62787.png)
+
+
+
+- At this point, another branch called 'feature/jenkinspipeline-stages'. This is because when you are working on a project, you do not want to be commiting directly to the main branch. it is always good to work on branch and only merge with the main branch when the code is good enough and have passedm the necessary test.
+
+- Next, add another stage called 'Test', push the changes to github and try to trigger the build in Jenkins. If the build is successful, you will see a screenshot like this:
+
+
+        
+        
