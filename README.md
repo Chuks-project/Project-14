@@ -45,4 +45,24 @@ To get started, we will focus on these environments initially.
   export PATH=$PATH:$JAVA_HOME/bin 
   export CLASSPATH=.:$JAVA_HOME/jre/lib:$JAVA_HOME/lib:$JAVA_HOME/lib/tools.jar
 `
+
+- Reload bash profile
+
+`source ~/.bash_profile`
  
+ - Having installed Java and Epel release, next is to install Jenkins:
+
+   `sudo yum install jenkins`
+   
+ - This is followd by: Starting, Enabling, View Jenkins status and also sudo systemctl daemon-reload
+
+#### Set up Jenkins by creating the Admin user with the Password:
+- Install Blue Ocean pluggin
+- Create a new pipeline
+- Create an Access Token
+
+#### Create a Jenkinsfile and run Jenkinsfile configuration with Jenkins
+
+- Jenkinsfile contains every step or jobs/actions that we want to execute. It is built in a code. 
+- Every job in Jenkinsfile starts with a Pipeline followed by Agent. In the cousre of this project, we use 'Any Agent', followed by the Stages ad steps.
+   
