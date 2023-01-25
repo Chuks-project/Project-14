@@ -183,6 +183,9 @@ python3 -m pip install mysql-connector-python
          
          `composer --version`
          
+- Composer is used by PHP to install all the dependent libraries used by the application
+
+         
          
 #### Install Jenkins plugins
     
@@ -214,10 +217,11 @@ python3 -m pip install mysql-connector-python
 
 #### Phase 2 – Integrate Artifactory repository with Jenkins
 
-- Create a dummy Jenkinsfile in the repository
 - Using Blue Ocean, create a multibranch Jenkins pipeline
 
 - On the database server, create database and user: Here, navigate to Roles/Mysql/defaults/main.yml to tweak the configuration for mysql installation of Database and the user.
+
+- php artisan uses the .env file to setup the required database objects – (After successful run of this step, login to the database, run show tables and you will see the tables being created for you)
 
 - Also tweak the .env.sample
 - Install mysql on Jenkin server
@@ -302,18 +306,67 @@ python3 -m pip install mysql-connector-python
     
 
 
+### SONARQUBE INSTALLATION
+
+Before we start getting hands on with SonarQube configuration, it is incredibly important to understand a few concepts:
+
+- Software Quality – The degree to which a software component, system or process meets specified requirements based on user needs and expectations.
+- Software Quality Gates – Quality gates are basically acceptance criteria which are usually presented as a set of predefined quality criteria that a software development project must meet in order to proceed from one stage of its lifecycle to the next one.
+
+- SonarQube is a tool that can be used to create quality gates for software projects, and the ultimate goal is to be able to ship only quality software code.
+
+Despite that DevOps CI/CD pipeline helps with fast software delivery, it is of the same importance to ensure the quality of such delivery. Hence, we will need SonarQube to set up Quality gates. In this project we will use predefined Quality Gates (also known as The Sonar Way). Software testers and developers would normally work with project leads and architects to create custom quality gates.
+
+#### Step 1:
+
+- Lauch Sonarqube instance
+- Download an ansible role for Sonarqube
+- Update the ci environment with the Sonarqube private IP address
+
+
+#### Install Sonarqube through ansible playbook:
+  
+    ![sonarqube successful png2](https://user-images.githubusercontent.com/65022146/214584863-ad7c6074-3392-4f5e-a65f-1b8f99ae268a.png)
+    ![sonarqube successful](https://user-images.githubusercontent.com/65022146/214584868-48c16a07-e579-47b6-9ded-1808aee23164.png)
+    
+    
+ - Copy the Sonarqube public IP and access it on the browser as seen below:
+    
+        ![sonarqube code quality page png2](https://user-images.githubusercontent.com/65022146/214586797-ebdb790c-fa52-4a63-ad60-73fede5f4605.png)
+        
+     
+- Install sonarqube pluggin on the Jenkins UI
+
+- Configure Sonarqube and the Jenkins for Quality gate
+
+
+- Generate authentication token in SonarQube:
+
+      ![sonarQube-token generated](https://user-images.githubusercontent.com/65022146/214591634-e20f8b33-3c29-4ee9-aca2-8334333f8eb4.png)
+
+
+- Configure Quality Gate Jenkins Webhook in SonarQube:
+
+     ![jenkinurl-sonarqube-webhooks-created](https://user-images.githubusercontent.com/65022146/214593341-e6e55ff8-3a44-42bc-8ca0-ed85ba101f31.png)
+     
+     
+     
+- Setup SonarQube scanner from Jenkins – Global Tool Configuration  
+
+- Update Jenkins Pipeline to include SonarQube scanning and Quality Gate:
+
+   ![image](https://user-images.githubusercontent.com/65022146/214601418-f7bd2e2a-fec9-4da9-9499-5ad44037e8db.png)
+   
+   
+- Notice that the quality gate was able to pass before deploying to the Dev environment. But this is not to say that it passed with some bugs.
+
+- For a better understanding, let us navigate to php-todo project in SonarQube:
+     
+     ![sonarqube-php-todo successful](https://user-images.githubusercontent.com/65022146/214602557-cd2086a1-b13e-4257-9a1d-72a4ed2cb7c5.png)
 
 
 
 
 
 
-
-
-
-
-
-#### Launch the Todo instance:
-
-- 
 
