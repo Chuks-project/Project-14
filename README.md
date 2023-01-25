@@ -326,13 +326,16 @@ Despite that DevOps CI/CD pipeline helps with fast software delivery, it is of t
 
 #### Install Sonarqube through ansible playbook:
   
+    
+    
     ![sonarqube successful png2](https://user-images.githubusercontent.com/65022146/214584863-ad7c6074-3392-4f5e-a65f-1b8f99ae268a.png)
+    
     ![sonarqube successful](https://user-images.githubusercontent.com/65022146/214584868-48c16a07-e579-47b6-9ded-1808aee23164.png)
     
     
- - Copy the Sonarqube public IP and access it on the browser as seen below:
+- Copy the Sonarqube public IP and access it on the browser as seen below:
     
-        ![sonarqube code quality page png2](https://user-images.githubusercontent.com/65022146/214586797-ebdb790c-fa52-4a63-ad60-73fede5f4605.png)
+    ![sonarqube code quality page png2](https://user-images.githubusercontent.com/65022146/214586797-ebdb790c-fa52-4a63-ad60-73fede5f4605.png)
         
      
 - Install sonarqube pluggin on the Jenkins UI
@@ -342,7 +345,7 @@ Despite that DevOps CI/CD pipeline helps with fast software delivery, it is of t
 
 - Generate authentication token in SonarQube:
 
-      ![sonarQube-token generated](https://user-images.githubusercontent.com/65022146/214591634-e20f8b33-3c29-4ee9-aca2-8334333f8eb4.png)
+   ![sonarQube-token generated](https://user-images.githubusercontent.com/65022146/214591634-e20f8b33-3c29-4ee9-aca2-8334333f8eb4.png)
 
 
 - Configure Quality Gate Jenkins Webhook in SonarQube:
