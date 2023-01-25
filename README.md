@@ -363,6 +363,35 @@ Despite that DevOps CI/CD pipeline helps with fast software delivery, it is of t
 - For a better understanding, let us navigate to php-todo project in SonarQube:
      
      ![sonarqube-php-todo successful](https://user-images.githubusercontent.com/65022146/214602557-cd2086a1-b13e-4257-9a1d-72a4ed2cb7c5.png)
+     
+- Notice from above, that there were 13 bugs.     
+     
+     
+ - In the development environment, this is acceptable as developers will need to keep iterating over their code towards perfection. But as a DevOps engineer working on the pipeline, we must ensure that the quality gate step causes the pipeline to fail if the conditions for quality are not met.
+
+
+### CONCLUSION
+ 
+ We are going to conclude this project by:
+ 
+- Introducing Jenkins agents/slaves – Add 2 more servers to be used as Jenkins slave. 
+
+- Configure Jenkins to run its pipeline jobs randomly on any available slave nodes.
+
+- Configure webhook between Jenkins and GitHub to automatically run the pipeline when there is a code push.
+
+- Deploy the application to all the environments
+
+#### SET UP
+
+- Spin up an instance
+- Install java
+- Open a bash_profile 
+- Configure Agent for Jenkins Slave on the Jenkin UI
+- Configure Webhook for php-Todo 
+
+   ![Webhook created](https://user-images.githubusercontent.com/65022146/214610262-11283111-108f-4557-8470-a9cd2d7dcdd0.png)
+   ![Built in node](https://user-images.githubusercontent.com/65022146/214610271-3626cb0d-d545-4413-ac87-307ab4ab7c53.png)
 
 
 
