@@ -192,9 +192,12 @@ python3 -m pip install mysql-connector-python
 #### We will use plot plugin to display tests reports, and code coverage information.
 #### The Artifactory plugin will be used to easily upload code artifacts into an Artifactory server. 
 
-- Launch artifactory instance
+#### Launch artifactory instance
+
 - Update the Inventory/ci with the artifactory private IP address
 - Tweak the Playbook/site.yml by uncommenting the Artifactory role/assignment
+- Copy the artifactory public IP address and access it on the browser in order to set up the Jfrog open source account
+- Configure artifactory on Jenkins
 
 #### Next, run the ansible playbook using the ci parameter to install the artifactory.
 
@@ -246,10 +249,71 @@ python3 -m pip install mysql-connector-python
 
 #### Also add the following Stages to the Jenkinsfile:
 
-- Add the code analysis step
+- The code analysis step
 - Plot Code Coverage Report
 
-- ![Plot code job successful](https://user-images.githubusercontent.com/65022146/214450921-d23eef8a-7b9a-46ba-a676-9ce86303c8f1.png)
-If the playbook is successful, you will see an image that looks like the screenshot below:
 
+
+- If the build is successful, you will see an image that looks like the screenshot below:
+
+    ![Plot code job successful](https://user-images.githubusercontent.com/65022146/214450921-d23eef8a-7b9a-46ba-a676-9ce86303c8f1.png)
+    
+    
+ - Notice that after the build,you should be able find Plot on Jenkins as seen below:
+ 
+     ![plots](https://user-images.githubusercontent.com/65022146/214543223-3fb5eefa-648e-4384-916f-fc180094bb1d.png)
+     
+     
+ #### Update Jenkinsfile with two more stages called:
+ 
+ - Package Artifact
+ - Upload Artifact to Artifactory
+ - Deploy to Dev Environment
+ 
+ - However, to package the artifact you need to install Zip
+ 
+ - Also tweak and replace the name of the Target artifactory before uploading the artifact to artifactory 
+ 
+  - Now push the changes to Jenkins and build the job to package the artifact, Upload artifact and deploy to environment.
+ 
+ - If successful, you will see an output that looks like the screenshot below:
+ 
+     ![upload artifactory successfulpng png new](https://user-images.githubusercontent.com/65022146/214570450-874794b8-7691-4260-b937-b98b4764e737.png)
+
+ 
+ - Notice that the php-todo artifact has been uploaded to the artifactory as seen below:
+ 
+    
+     ![Jfrog Artifactory-serving one artifact](https://user-images.githubusercontent.com/65022146/214572350-6bb0f034-78d4-45b9-a380-68c929b9fc71.png)
+
+     
+ 
+- Before we deploy to the Dev Environment, we have to create Php-Todo server
+- Update the Dev.yml with the Todo private IP
+- Tweak the Playbook/site.yml by uncommenting the Todo task
+- Generate the password and the URL from the Jrog page and update the deployment.yml file 
+     
+     ![php deploy to dev env successful](https://user-images.githubusercontent.com/65022146/214569906-a107293f-5f83-4e1a-8e12-9c77bf3a8cd5.png)
+      
+ 
+ 
+ - Now that we have been able to build and deploy our php-Todo Application. The unit test and the code coverage test is not enough to say that our software is good generally. This is why Quality gate is introduced in the sense that if the code is bad or pass the quality gate, it won't be deployed to the Production environment. This is where Sonarqube comes to play.
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### Launch the Todo instance:
+
+- 
 
