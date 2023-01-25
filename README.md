@@ -155,8 +155,9 @@ python3 -m pip install mysql-connector-python
     
     - Here you have to add PHP-Todo folder to your workspace.
     
-    - Phase 1 – Prepare Jenkins by:
-    1. Forking and cloning down the PHP-Todo repository
+ #### Phase 1 – Prepare Jenkins by:
+   
+   1. Forking and cloning down the PHP-Todo repository
    
    2. On you Jenkins server, install PHP, its dependencies and Composer tool as follows:
      
@@ -172,5 +173,83 @@ python3 -m pip install mysql-connector-python
         `systemctl enable php-fpm`
         
         
+ - Install Composer
+    
+    ` curl -sS https://getcomposer.org/installer | php
+     sudo mv composer.phar /usr/bin/composer`
         
+        
+    - Verify Composer is installed or not   
          
+         `composer --version`
+         
+         
+#### Install Jenkins plugins
+    
+    - Plot plugin
+    - Artifactory plugin
+
+#### We will use plot plugin to display tests reports, and code coverage information.
+#### The Artifactory plugin will be used to easily upload code artifacts into an Artifactory server. 
+
+- Launch artifactory instance
+- Update the Inventory/ci with the artifactory private IP address
+- Tweak the Playbook/site.yml by uncommenting the Artifactory role/assignment
+
+#### Next, run the ansible playbook using the ci parameter to install the artifactory.
+
+- If the playbook is successful, you will see an image like the screenshot below:
+
+     ![artifactory ansi-playbook-ci succesful](https://user-images.githubusercontent.com/65022146/214430855-a94febce-f7c7-4a08-b5c1-5c946b8b98d2.png)
+     
+ 
+ 
+ 
+ - In Jenkins UI configure Artifactory  
+ - Configure the server ID, URL and Credentials, run Test Connection.
+
+
+#### Phase 2 – Integrate Artifactory repository with Jenkins
+
+- Create a dummy Jenkinsfile in the repository
+- Using Blue Ocean, create a multibranch Jenkins pipeline
+
+- On the database server, create database and user: Here, navigate to Roles/Mysql/defaults/main.yml to tweak the configuration for mysql installation of Database and the user.
+
+- Also tweak the .env.sample
+- Install mysql on Jenkin server
+- Set the bind address 
+
+   ![ansi mysql successful 1](https://user-images.githubusercontent.com/65022146/214438263-a15123f1-cc0f-4a32-94b1-87943681cf95.png)
+   ![ansi mysql successful 2](https://user-images.githubusercontent.com/65022146/214438266-e99bbeea-944e-4439-ac37-2ccfb3eaa35a.png)
+   
+   
+   #### Confirm the installation by logging into the database:
+   
+     ![connected to mysql via phptodo](https://user-images.githubusercontent.com/65022146/214441924-dc166023-034f-4bdd-910a-5e06603b8bbb.png)
+     
+     
+     
+     
+    #### Update Jenkinsfile with proper pipeline configuration to include the following stages:
+    
+    - Initial cleanup
+    - Checkout SCM
+    - Prepare Dependencies
+    - Execute Unit Tests
+
+
+- If the playbook is successful, you will see an image that looks like the screenshot below:
+
+     ![Execute unit test successful](https://user-images.githubusercontent.com/65022146/214448400-297e6a51-6fa7-4303-b38a-5ab16ef4c381.png)
+
+
+#### Also add the following Stages to the Jenkinsfile:
+
+- Add the code analysis step
+- Plot Code Coverage Report
+
+- ![Plot code job successful](https://user-images.githubusercontent.com/65022146/214450921-d23eef8a-7b9a-46ba-a676-9ce86303c8f1.png)
+If the playbook is successful, you will see an image that looks like the screenshot below:
+
+
